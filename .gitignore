@@ -1,0 +1,34 @@
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+
+### Scala template
+# sbt specific
+.cache
+.lib/
+dist/*
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+### PlayFramework template
+# Ignore Play! working directory #
+/db
+.eclipse
+/lib/
+/modules
+tmp/
+test-result
+server.pid
+*.eml
+/dist/
