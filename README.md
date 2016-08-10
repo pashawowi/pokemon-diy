@@ -19,5 +19,19 @@ clean run` if you want to clean up the running cache (which may be necessary
 if some of the cross-compiling objects need to update, or your output will be
 wrong).
 
+## How to let your play application know your database?
+You should firstly notice the information in the *application.conf*.  
+The username, password, and corresponding database name should be there,
+in order to sync, you should run `$ psql -U postgres -d postgres` and enter database
+as user **postgres**, and then run
+```
+postgres=# create role pokemon with login createdb password 'pokemon';
+postgres=# create database pokemon;
+```
+And then you will have a database named 'pokemon', with user 'pokemon' and password 'pokemon'!  
+
+## How to configure your database?
+To be done.
+
 ## Finally
 Happy hacking.
