@@ -11,11 +11,12 @@ CREATE TABLE pokemon (
   id INTEGER PRIMARY KEY,
   chinese_name TEXT NOT NULL,
   english_name TEXT NOT NULL,
-  description TEXT NOT NULL,
+  description TEXT,
   type_1 "type" NOT NULL,
   type_2 "type",
-  ability INTEGER REFERENCES ability (id) NOT NULL,
-  special_ability INTEGER REFERENCES ability (id) NOT NULL,
+  ability_1 INTEGER REFERENCES ability (id) NOT NULL,
+  ability_2 INTEGER REFERENCES ability (id),
+  ability_3 INTEGER REFERENCES ability (id),
   full_exp INTEGER NOT NULL,
   height REAL NOT NULL, -- meter
   weight REAL NOT NULL, -- kilo gramme
@@ -55,9 +56,9 @@ CREATE TABLE move (
   description TEXT NOT NULL,
   "type" "type" NOT NULL,
   category move_category NOT NULL,
-  power INT NOT NULL,
-  accuracy INT NOT NULL, -- percentage
-  pp INT NOT NULL
+  power INTEGER NOT NULL,
+  accuracy INTEGER NOT NULL, -- percentage
+  pp INTEGER NOT NULL
 );
 
 # --- !Downs
