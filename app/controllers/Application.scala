@@ -19,7 +19,7 @@ class Application @Inject()(moveDAO: MoveDAO)
       m <- moveDAO.move.getById(id)
     } yield m
     move.map {
-      case Some(u) => Ok()
+      case Some(u) => Ok(views.html.index())
       case None => NotFound
     }
   }

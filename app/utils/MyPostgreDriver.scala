@@ -17,6 +17,8 @@ package utils
 import com.github.tminglei.slickpg._
 import play.api.libs.json._
 
+import models.{EggGroup, Gender, MoveCategory, Stat, Type}
+
 trait MyPostgreDriver extends ExPostgresDriver
   with PgEnumSupport
   with PgArraySupport
@@ -29,12 +31,22 @@ trait MyPostgreDriver extends ExPostgresDriver
 
   override val api = MyAPI
 
-  override object MyAPI extends API with ArrayImplicits with DateTimeImplicits with JsonImplicits with RangeImplicits
+  object MyAPI extends API with ArrayImplicits with DateTimeImplicits with JsonImplicits with RangeImplicits
     with SearchImplicits with SearchAssistants {
     implicit val strListTypeMapper = new SimpleArrayJdbcType[String]("text").to(_.toList)
     implicit val playJsonArrayTypeMapper = new AdvancedArrayJdbcType[JsValue](pgjson,
       (s) => utils.SimpleArrayUtils.fromString[JsValue](Json.parse)(s).orNull,
       (v) => utils.SimpleArrayUtils.mkString[JsValue](_.toString())(v)).to(_.toList)
+    implicit val eggGroupTypeMapper = createEnumJdbcType("EggGroup", EggGroup)
+    implicit val eggGroupListTypeMapper = createEnumListJdbcType("EggGroup", EggGroup)
+    implicit val genderTypeMapper = createEnumJdbcType("Gender", Gender)
+    implicit val genderListTypeMapper = createEnumListJdbcType("Gender", Gender)
+    implicit val moveCategoryTypeMapper = createEnumJdbcType("MoveCategory", MoveCategory)
+    implicit val moveCategoryListTypeMapper = createEnumListJdbcType("MoveCategory", MoveCategory)
+    implicit val statTypeMapper = createEnumJdbcType("Stat", Stat)
+    implicit val statListTypeMapper = createEnumListJdbcType("Stat", Stat)
+    implicit val typeTypeMapper = createEnumJdbcType("Type", Type)
+    implicit val typeListTypeMapper = createEnumListJdbcType("Type", Type)
   }
 }
 
